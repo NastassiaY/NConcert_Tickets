@@ -1,19 +1,22 @@
 import java.time.Instant;
+import java.util.UUID;
 
 public class Ticket {
-    private String ticketID;
+    private final String ticketID;
     private String concertHallName;
     private int eventCode;
-    private long time;
+    private final long time;
     private boolean isPromo;
-    private char stadiumSector;
+    private StadiumSector stadiumSector;
     private float bagWeightMAX;
 
     public Ticket() {
+        this.ticketID = UUID.randomUUID().toString().substring(0,3);
         this.time = Instant.now().getEpochSecond();
     }
 
     public Ticket(String concertHallName, int eventCode, long time) {
+        this.ticketID = UUID.randomUUID().toString().substring(0,3);
         if (concertHallName.length() > 10) {
             throw new IllegalArgumentException("ConcertHallName shouldn't be longer than 10 chars");
         }
@@ -25,12 +28,9 @@ public class Ticket {
         this.time = time;
     }
 
-    public Ticket(String ticketID, String concertHallName, int eventCode,
-                  long time, boolean isPromo, char stadiumSector, float bagWeightMAX) {
-        if (ticketID.length() > 4) {
-            throw new IllegalArgumentException("TicketID shouldn't contain more than 4 digits and/or chars");
-        }
-        this.ticketID = ticketID;
+    public Ticket(String concertHallName, int eventCode,
+                  long time, boolean isPromo, StadiumSector stadiumSector, float bagWeightMAX) {
+        this.ticketID = UUID.randomUUID().toString().substring(0,3);
         if (concertHallName.length() > 10) {
             throw new IllegalArgumentException("ConcertHallName shouldn't be longer than 10 chars");
         }
@@ -42,21 +42,14 @@ public class Ticket {
 
         this.time = time;
         this.isPromo = isPromo;
-        if(stadiumSector == 'A' || stadiumSector == 'B' || stadiumSector == 'C') {
         this.stadiumSector = stadiumSector;
-        } else throw new IllegalArgumentException("StadiumSector should be A,B or C");
         if (bagWeightMAX <= 0) {
             throw new IllegalArgumentException("BagWeightMAX should be above 0");
         }
         this.bagWeightMAX = bagWeightMAX;
     }
 
-    public void setTicketID(String ticketID) {
-        if (ticketID.length() > 4) {
-            throw new IllegalArgumentException("TicketID shouldn't contain more than 4 digits and/or chars");
-        }
-        this.ticketID = ticketID;
-    }
+
 
     public void setConcertHallName(String concertHallName) {
         if (concertHallName.length() > 10) {
@@ -72,18 +65,12 @@ public class Ticket {
         this.eventCode = eventCode;
     }
 
-    public void setTime(long time) {
-        this.time = time;
-    }
-
     public void setPromo(boolean promo) {
         isPromo = promo;
     }
 
-    public void setStadiumSector(char stadiumSector) {
-        if(stadiumSector == 'A' || stadiumSector == 'B' || stadiumSector == 'C') {
-            this.stadiumSector = stadiumSector;
-        } else throw new IllegalArgumentException("StadiumSector should be A,B or C");
+    public void setStadiumSector(StadiumSector stadiumSector) {
+        this.stadiumSector = stadiumSector;
     }
 
     public void setBagWeightMAX(float bagWeightMAX) {
@@ -91,6 +78,16 @@ public class Ticket {
             throw new IllegalArgumentException("BagWeightMAX should be above 0");
         }
         this.bagWeightMAX = bagWeightMAX;
+    }
+
+    public String getTicketID() {
+        return ticketID;
+    }
+
+    public enum StadiumSector {
+        A,
+        B,
+        C
     }
 
 }
