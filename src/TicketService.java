@@ -11,4 +11,11 @@ public class TicketService {
 
     }
 
+    public Ticket getTicket(String ticketID, Ticket[] tickets) {
+        Ticket ticket = null;
+        for(Ticket t : tickets) {
+            if(ticketID.equals(t.getTicketID())) ticket = t;
+        }
+        return ticket;
+    }
 }
