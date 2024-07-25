@@ -82,4 +82,8 @@ public class Ticket {
     public String getTicketID() {
         return ticketID;
     }
+
+    public StadiumSector getStadiumSector() {
+        return stadiumSector;
+    }
 }
