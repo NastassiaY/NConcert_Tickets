@@ -1,3 +1,4 @@
+import constants.StadiumSector;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -49,8 +50,6 @@ public class Ticket {
         this.bagWeightMAX = bagWeightMAX;
     }
 
-
-
     public void setConcertHallName(String concertHallName) {
         if (concertHallName.length() > 10) {
             throw new IllegalArgumentException("ConcertHallName shouldn't be longer than 10 chars");
@@ -83,11 +82,4 @@ public class Ticket {
     public String getTicketID() {
         return ticketID;
     }
-
-    public enum StadiumSector {
-        A,
-        B,
-        C
-    }
-
 }
