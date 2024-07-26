@@ -50,10 +50,9 @@ public class Ticket {
         this.bagWeightMAX = bagWeightMAX;
     }
 
-    public static createFullTicket(String concertHallName, int eventCode,
-                            long time, boolean isPromo, StadiumSector stadiumSector, float bagWeightMAX) {
-        return new Ticket(concertHallName, eventCode,
-        time, isPromo, stadiumSector, bagWeightMAX)
+    public static Ticket createFullTicket(String concertHallName, int eventCode, long time, boolean isPromo,
+                                          StadiumSector stadiumSector, float bagWeightMAX) {
+        return new Ticket(concertHallName, eventCode, time, isPromo, stadiumSector, bagWeightMAX);
     }
 
     public void setConcertHallName(String concertHallName) {

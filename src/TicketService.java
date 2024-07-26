@@ -10,10 +10,8 @@ public class TicketService {
         try {
             for (int i = 0; i < 10; i++) {
                 StadiumSector sector = StadiumSector.values()[(int) (Math.random() * StadiumSector.values().length)];
-                soldTickets.add(new Ticket("Wembley", 333, Instant.now().getEpochSecond(), false, sector, 5.0F));
+                soldTickets.add(Ticket.createFullTicket("Wembley", 333, Instant.now().getEpochSecond(), false, sector, 5.0F));
             }
-          
-            Ticket ticketFull = Ticket.createFullTicket("4321", "Wembley", 333, Instant.now().getEpochSecond(), false, 'A', 5.0F);
 
             System.out.println(getTicketBySector(StadiumSector.A, soldTickets));
             System.out.println(getTicketBySector(StadiumSector.B, soldTickets));
