@@ -28,7 +28,7 @@ public class Ticket {
         this.time = time;
     }
 
-    public Ticket(String concertHallName, int eventCode,
+    private Ticket(String concertHallName, int eventCode,
                   long time, boolean isPromo, StadiumSector stadiumSector, float bagWeightMAX) {
         this.ticketID = UUID.randomUUID().toString().substring(0,3);
         if (concertHallName.length() > 10) {
@@ -49,7 +49,11 @@ public class Ticket {
         this.bagWeightMAX = bagWeightMAX;
     }
 
-
+    public static createFullTicket(String concertHallName, int eventCode,
+                            long time, boolean isPromo, StadiumSector stadiumSector, float bagWeightMAX) {
+        return new Ticket(concertHallName, eventCode,
+        time, isPromo, stadiumSector, bagWeightMAX)
+    }
 
     public void setConcertHallName(String concertHallName) {
         if (concertHallName.length() > 10) {
